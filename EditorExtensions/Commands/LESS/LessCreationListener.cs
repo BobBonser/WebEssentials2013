@@ -22,6 +22,8 @@ namespace MadsKristensen.EditorExtensions
 
             textView.Properties.GetOrCreateSingletonProperty<LessExtractVariableCommandTarget>(() => new LessExtractVariableCommandTarget(textViewAdapter, textView));
             textView.Properties.GetOrCreateSingletonProperty<LessExtractMixinCommandTarget>(() => new LessExtractMixinCommandTarget(textViewAdapter, textView));
+
+            textView.Properties.GetOrCreateSingletonProperty<LessGoToDefinition>(() => new LessGoToDefinition(textViewAdapter, textView));
         }
     }
 }
