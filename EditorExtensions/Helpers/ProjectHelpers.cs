@@ -66,8 +66,16 @@ namespace MadsKristensen.EditorExtensions
                 }
                 catch (ArgumentException)
                 {
-                    // MFC projects don't have FullPath, and there seems to be no way to query existence
-                    fullPath = project.Properties.Item("ProjectDirectory").Value as string;
+                    try
+                    {
+                        // MFC projects don't have FullPath, and there seems to be no way to query existence
+                        fullPath = project.Properties.Item("ProjectDirectory").Value as string;
+                    }
+                    catch (ArgumentException)
+                    {
+                        // Installer projects have a ProjectPath.
+                        fullPath = project.Properties.Item("ProjectPath").Value as string;
+                    }
                 }
 
                 if (String.IsNullOrEmpty(fullPath))
